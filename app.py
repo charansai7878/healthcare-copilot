@@ -19,17 +19,21 @@ load_dotenv()
 app = Flask(__name__)
 app.secret_key = os.getenv('FLASK_SECRET_KEY', 'healthpilot_super_secret_key_123')
 # Configure Database
-# On Vercel, the filesystem is read-only except for /tmp. 
-# Render or local environments can use the instance folder.
-if os.environ.get('VERCEL'):
-    db_path = '/tmp/healthcare.db'
+# Check if Supabase DATABASE_URL is provided in environment variables
+db_url = os.environ.get('DATABASE_URL')
+
+if db_url:
+    # SQLAlchemy requires 'postgresql://' instead of 'postgres://'
+    if db_url.startswith("postgres://"):
+        db_url = db_url.replace("postgres://", "postgresql://", 1)
+    app.config['SQLALCHEMY_DATABASE_URI'] = db_url
 else:
-    # Use absolute path for local/Render to avoid issues
+    # Fallback to local SQLite if no DATABASE_URL is provided (for local testing)
     basedir = os.path.abspath(os.path.dirname(__name__))
     db_path = os.path.join(basedir, 'instance', 'healthcare.db')
     os.makedirs(os.path.join(basedir, 'instance'), exist_ok=True)
+    app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{db_path}'
 
-app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{db_path}'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
