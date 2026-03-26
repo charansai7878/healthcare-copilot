@@ -1,0 +1,688 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --bg: #f0ede8;
+  --bg-card: #faf9f7;
+  --bg-pill: #e8e4de;
+  --ink: #1a1714;
+  --ink-muted: #6b6560;
+  --ink-faint: #b5b0aa;
+  --accent: #c8533a;
+  --accent-light: #f5e8e4;
+  --accent-green: #3a7c5c;
+  --accent-green-light: #e4f0ea;
+  --accent-blue: #2d5f8a;
+  --accent-blue-light: #e4edf5;
+  --accent-amber: #b87a1a;
+  --accent-amber-light: #f5eddc;
+  --border: #d8d3cc;
+  --shadow: 0 2px 12px rgba(26, 23, 20, 0.08);
+  --shadow-lg: 0 8px 40px rgba(26, 23, 20, 0.14);
+  --radius: 14px;
+  --radius-sm: 8px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+/* ── Header ── */
+header {
+  background: var(--ink);
+  padding: 0 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.logo-icon {
+  width: 32px;
+  height: 32px;
+  background: var(--accent);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+}
+
+.logo-text {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.2rem;
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+
+.logo-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  background: var(--accent);
+  color: #fff;
+  padding: 2px 7px;
+  border-radius: 20px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.header-disclaimer {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.35);
+  font-weight: 300;
+}
+
+/* ── Layout ── */
+main {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 5rem;
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.hero-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+  font-weight: 500;
+}
+
+.hero h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 0.75rem;
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.hero-sub {
+  color: var(--ink-muted);
+  font-size: 0.95rem;
+  max-width: 460px;
+  margin: 0 auto;
+  font-weight: 300;
+}
+
+/* ── Input Card ── */
+.input-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  box-shadow: var(--shadow);
+  margin-bottom: 1.5rem;
+}
+
+.tabs {
+  display: flex;
+  gap: 0;
+  margin-bottom: 1.75rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  width: fit-content;
+}
+
+.tab-btn {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  padding: 8px 20px;
+  border: none;
+  background: transparent;
+  color: var(--ink-muted);
+  cursor: pointer;
+  transition: all 0.18s;
+  letter-spacing: 0.01em;
+}
+
+.tab-btn.active {
+  background: var(--ink);
+  color: #fff;
+}
+
+.tab-btn:hover:not(.active) {
+  background: var(--bg-pill);
+  color: var(--ink);
+}
+
+.tab-panel {
+  display: none;
+}
+
+.tab-panel.active {
+  display: block;
+}
+
+/* Text input */
+.text-input-wrap {
+  position: relative;
+}
+
+textarea {
+  width: 100%;
+  min-height: 150px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.82rem;
+  line-height: 1.7;
+  padding: 1rem 1.1rem;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  color: var(--ink);
+  resize: vertical;
+  transition: border-color 0.2s;
+  outline: none;
+}
+
+textarea:focus {
+  border-color: var(--ink);
+}
+
+textarea::placeholder {
+  color: var(--ink-faint);
+}
+
+.char-hint {
+  font-size: 0.72rem;
+  color: var(--ink-faint);
+  margin-top: 0.4rem;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Image drop zone */
+.drop-zone {
+  border: 2px dashed var(--border);
+  border-radius: var(--radius-sm);
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: var(--bg);
+  position: relative;
+}
+
+.drop-zone:hover,
+.drop-zone.drag-over {
+  border-color: var(--accent);
+  background: var(--accent-light);
+}
+
+.drop-icon {
+  font-size: 2.2rem;
+  margin-bottom: 0.6rem;
+  display: block;
+}
+
+.drop-label {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 0.3rem;
+}
+
+.drop-sub {
+  font-size: 0.75rem;
+  color: var(--ink-muted);
+}
+
+.drop-sub span {
+  font-family: 'JetBrains Mono', monospace;
+  background: var(--bg-pill);
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+}
+
+#file-input {
+  display: none;
+}
+
+#image-preview-wrap {
+  display: none;
+  position: relative;
+  margin-top: 1rem;
+}
+
+#image-preview-wrap img {
+  max-height: 260px;
+  width: 100%;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+}
+
+.remove-img {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: var(--ink);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* CTA Button */
+.cta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.interpret-btn {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 12px 32px;
+  background: var(--ink);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  letter-spacing: 0.01em;
+  transition: background 0.2s, transform 0.1s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.interpret-btn:hover {
+  background: #2e2a26;
+}
+
+.interpret-btn:active {
+  transform: scale(0.98);
+}
+
+.interpret-btn:disabled {
+  background: var(--ink-faint);
+  cursor: not-allowed;
+}
+
+.safety-note {
+  font-size: 0.72rem;
+  color: var(--ink-faint);
+  max-width: 340px;
+  font-weight: 300;
+}
+
+/* ── Loading ── */
+#loading {
+  display: none;
+  text-align: center;
+  padding: 3rem 1.5rem;
+}
+
+.loader-ring {
+  width: 48px;
+  height: 48px;
+  border: 3px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+  margin: 0 auto 1.2rem;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--ink-muted);
+}
+
+.loading-stages {
+  font-size: 0.72rem;
+  color: var(--ink-faint);
+  margin-top: 0.4rem;
+}
+
+/* ── Error ── */
+.error-box {
+  background: #fdf2f0;
+  border: 1px solid #f0c5be;
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.85rem;
+  color: #8b2e20;
+  margin-bottom: 1.5rem;
+}
+
+/* ── Results ── */
+#results {
+  display: none;
+}
+
+.results-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.results-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.4rem;
+  letter-spacing: -0.01em;
+}
+
+.results-count {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--ink-muted);
+  background: var(--bg-pill);
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+.reset-btn {
+  font-size: 0.78rem;
+  font-family: 'DM Sans', sans-serif;
+  padding: 7px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--ink-muted);
+  cursor: pointer;
+  transition: all 0.18s;
+}
+
+.reset-btn:hover {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+/* ── Medicine Card ── */
+.med-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 1.25rem;
+  box-shadow: var(--shadow);
+  animation: cardIn 0.35s ease both;
+}
+
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.med-card-header {
+  background: var(--ink);
+  padding: 1.1rem 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+
+.med-name {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.35rem;
+  color: #fff;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.med-formula {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.45);
+  margin-top: 2px;
+}
+
+.med-disease {
+  font-size: 0.75rem;
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.75);
+  padding: 4px 12px;
+  border-radius: 20px;
+  align-self: flex-start;
+  white-space: nowrap;
+}
+
+.med-body {
+  padding: 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+@media (max-width: 580px) {
+  .med-body {
+    grid-template-columns: 1fr;
+  }
+}
+
+.info-block {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.info-block.full-width {
+  grid-column: 1 / -1;
+}
+
+.info-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink-faint);
+  font-weight: 500;
+}
+
+.info-value {
+  font-size: 0.9rem;
+  color: var(--ink);
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+/* Dosage pill strip */
+.dose-strip {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 2px;
+}
+
+.dose-pill {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 8px 14px;
+  min-width: 70px;
+}
+
+.dose-pill-val {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1rem;
+  color: var(--ink);
+  line-height: 1;
+}
+
+.dose-pill-lbl {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.58rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-faint);
+  margin-top: 3px;
+}
+
+/* Side effects tags */
+.tags-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.tag {
+  font-size: 0.75rem;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+
+.tag-red {
+  background: var(--accent-light);
+  color: var(--accent);
+  border: 1px solid #f0c5be;
+}
+
+.tag-green {
+  background: var(--accent-green-light);
+  color: var(--accent-green);
+  border: 1px solid #b8d9c8;
+}
+
+/* Drug interaction warning */
+.interaction-box {
+  background: var(--accent-amber-light);
+  border: 1px solid #e8c97a;
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1rem;
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  font-size: 0.82rem;
+  color: #7a4f0a;
+  margin-top: 4px;
+}
+
+.interaction-icon {
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+/* Disclaimer ribbon */
+.disclaimer-ribbon {
+  background: var(--accent-blue-light);
+  border: 1px solid #b8cfe8;
+  border-radius: var(--radius-sm);
+  padding: 0.85rem 1.25rem;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 0.78rem;
+  color: #1d4068;
+  margin-top: 2rem;
+  line-height: 1.5;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+
+/* ── Footer ── */
+footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  font-size: 0.72rem;
+  color: var(--ink-faint);
+  border-top: 1px solid var(--border);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Responsive tweaks */
+@media (max-width: 480px) {
+  .input-card {
+    padding: 1.25rem;
+  }
+
+  .cta-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .interpret-btn {
+    justify-content: center;
+  }
+}

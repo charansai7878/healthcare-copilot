@@ -1,0 +1,44 @@
+# Environment variables - NEVER commit secrets
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+.Python
+env/
+venv/
+.venv/
+ENV/
+pip-wheel-metadata/
+
+# SQLite database (use a cloud DB in production)
+instance/
+*.db
+*.sqlite3
+
+# IDE & OS
+.idea/
+.vscode/
+*.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Logs
+*.log
+logs/
+
+# Vercel
+.vercel/
+
+# Render
+render.yaml.bak

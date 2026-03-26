@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-width=1.0">
+    <title>Healthcare Copilot | AI Medical Assistant</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="logo">
+                <i class="fa-solid fa-heart-pulse logo-icon"></i>
+                <span>HealthPilot</span>
+            </div>
+            <ul class="nav-links">
+                <li class="active" data-tab="dashboard"><i class="fa-solid fa-chart-line"></i> Dashboard</li>
+                <li data-tab="scanner"><i class="fa-solid fa-camera"></i> Prescription Scanner</li>
+                <li data-tab="symptoms"><i class="fa-solid fa-stethoscope"></i> Symptom Checker</li>
+                <li data-tab="pharmacy"><i class="fa-solid fa-pills"></i> Pharmacy Intel</li>
+                <li data-tab="chat"><i class="fa-solid fa-comments"></i> Copilot Assistant</li>
+            </ul>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <header class="top-header">
+                <div class="greeting">
+                    <h1>Good Morning, {{ username }} 👋</h1>
+                    <p>Your AI Healthcare Assistant is ready to help.</p>
+                </div>
+                <div class="user-profile" style="display: flex; align-items: center;">
+                    <img src="https://ui-avatars.com/api/?name={{ username }}&background=4f46e5&color=fff" alt="User">
+                    <a href="{{ url_for('logout') }}" class="btn" style="margin-left: 15px; background: rgba(255,255,255,0.1); color: #fff; text-decoration: none; padding: 8px 16px; border-radius: 8px; font-size: 14px;">Logout</a>
+                </div>
+            </header>
+
+            <div class="tab-content-container">
+                <!-- Dashboard Tab -->
+                <section id="dashboard" class="tab-content active glass-panel">
+                    <h2><i class="fa-solid fa-clock-rotate-left"></i> Prescription History Timeline</h2>
+                    <div id="timeline-container" class="timeline">
+                        <!-- Populated by JS -->
+                    </div>
+                </section>
+
+                <!-- Scanner Tab -->
+                <section id="scanner" class="tab-content glass-panel">
+                    <h2><i class="fa-solid fa-camera"></i> Scan New Prescription</h2>
+                    <p class="subtitle">Upload a clear image of your doctor's prescription, and our AI will decode it.</p>
+                    <div class="upload-area" id="upload-area">
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                        <p>Drag & Drop or Click to Upload Image</p>
+                        <input type="file" id="prescription-upload" accept="image/*" hidden>
+                    </div>
+                    
+                    <div class="analysis-results" id="analysis-results" style="display: none;">
+                        <h3>Demystified Prescription</h3>
+                        <div id="medicines-list" class="medicine-cards"></div>
+                    </div>
+                </section>
+
+                <!-- Symptoms Tab -->
+                <section id="symptoms" class="tab-content glass-panel">
+                    <h2><i class="fa-solid fa-stethoscope"></i> Symptom to Disease Check</h2>
+                    <p class="subtitle">Tell us what you're feeling, and we'll predict possible conditions.</p>
+                    <div class="symptom-input-group">
+                        <input type="text" id="symptom-input" placeholder="e.g., fever, headache, cough...">
+                        <button class="btn primary" id="predict-btn">Analyze</button>
+                    </div>
+                    <div id="disease-prediction" class="prediction-box" style="display: none;">
+                        <!-- Results injected here -->
+                    </div>
+                </section>
+
+                <!-- Pharmacy Intel Tab -->
+                <section id="pharmacy" class="tab-content glass-panel">
+                    <h2><i class="fa-solid fa-pills"></i> Pharmacy Intelligence</h2>
+                    <div class="pharmacy-grid">
+                        <div class="tool-card">
+                            <h3>Medicine Info & Alternatives</h3>
+                            <input type="text" id="medicine-search" placeholder="Enter medicine name...">
+                            <button class="btn" id="search-med-btn">Search</button>
+                            <div id="med-info-result" class="med-result"></div>
+                        </div>
+                        <div class="tool-card">
+                            <h3>Drug Interaction Checker</h3>
+                            <input type="text" id="interaction-input" placeholder="e.g., Paracetamol, Aspirin...">
+                            <button class="btn" id="check-interaction-btn">Check</button>
+                            <div id="interaction-result" class="med-result"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Chat Tab -->
+                <section id="chat" class="tab-content glass-panel chat-section">
+                    <h2><i class="fa-solid fa-robot"></i> Copilot Assistant</h2>
+                    <div class="chat-window">
+                        <div class="messages" id="chat-messages">
+                            <div class="message bot">
+                                <div class="avatar"><i class="fa-solid fa-robot"></i></div>
+                                <div class="bubble">Hello! I'm your AI Healthcare Copilot. Ask me to explain a prescription or check a medicine for you.</div>
+                            </div>
+                        </div>
+                        <div class="chat-inputbox">
+                            <input type="text" id="chat-input" placeholder="Ask a health question...">
+                            <button class="btn primary" id="send-chat-btn"><i class="fa-solid fa-paper-plane"></i></button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modals and Overlays -->
+    <div id="loading" class="loading-overlay">
+        <div class="spinner"></div>
+        <p>Analyzing medical data...</p>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

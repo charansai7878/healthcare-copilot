@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: healthcare-copilot
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT --workers 2 --timeout 120
+    envVars:
+      - key: GROQ_API_KEY
+        sync: false
+      - key: FLASK_SECRET_KEY
+        generateValue: true
+      - key: PYTHON_VERSION
+        value: 3.11.0
+    disk:
+      name: healthcare-data
+      mountPath: /opt/render/project/src/instance
+      sizeGB: 1
